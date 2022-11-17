@@ -5,6 +5,7 @@ pub fn demo_it() {
     use_better_poker_card();
     use_mixed_poker_card();
     complex_enum_demo();
+    option_demo();
 }
 
 #[derive(Debug)]
@@ -108,3 +109,17 @@ fn complex_enum_demo() {
     println!("{:?}, {:?}, {:?}", m1, m2, m3);
 
 }
+
+fn plus_one(x:Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i+1),
+    }
+}
+fn option_demo() {
+    let five=Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
+    println!("{:?}, {:?}", six, none);
+}
+
