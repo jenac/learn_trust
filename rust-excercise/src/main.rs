@@ -10,6 +10,7 @@ fn main() {
   // complex_types::too_more_string::demo_it();
   // complex_types::tuples::demo_it();
   // complex_types::struct_demo::demo_it();
-  complex_types::enum_demo::demo_it();
+  // complex_types::enum_demo::demo_it();
+  complex_types::array_demo::demo_it();
 }
 

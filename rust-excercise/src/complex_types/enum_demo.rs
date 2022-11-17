@@ -44,7 +44,7 @@ fn use_in_struct() {
         suit: PokerSuit::Diamonds,
         value: 12,
     };
-  println!("{:?}, {:?}", c1, c2);
+    println!("{:?}, {:?}", c1, c2);
 }
 
 #[derive(Debug)]
@@ -81,7 +81,7 @@ fn use_mixed_poker_card() {
 #[derive(Debug)]
 enum Message {
     Quit,
-    Move {x:i32, y:i32},
+    Move { x: i32, y: i32 },
     Write(String),
     ChangeColor(i32, i32, i32),
 }
@@ -104,22 +104,20 @@ struct ChangeColorMessage(i32, i32, i32); // 元组结构体
 
 fn complex_enum_demo() {
     let m1 = Message::Quit;
-    let m2 = Message::Move{x:5, y:8};
+    let m2 = Message::Move { x: 5, y: 8 };
     let m3 = Message::ChangeColor(244, 211, 255);
     println!("{:?}, {:?}, {:?}", m1, m2, m3);
-
 }
 
-fn plus_one(x:Option<i32>) -> Option<i32> {
+fn plus_one(x: Option<i32>) -> Option<i32> {
     match x {
         None => None,
-        Some(i) => Some(i+1),
+        Some(i) => Some(i + 1),
     }
 }
 fn option_demo() {
-    let five=Some(5);
+    let five = Some(5);
     let six = plus_one(five);
     let none = plus_one(None);
     println!("{:?}, {:?}", six, none);
 }
-

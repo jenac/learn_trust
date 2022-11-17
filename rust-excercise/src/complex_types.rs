@@ -4,3 +4,4 @@ pub mod too_more_string;
 pub mod tuples;
 pub mod struct_demo;
 pub mod enum_demo;
+pub mod array_demo;
