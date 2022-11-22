@@ -16,6 +16,7 @@ fn main() {
   // complex_types::array_demo::demo_it();
   // flow_control::basics::demo_it();
   // match_pattern::match_basics::demo_it();
-  match_pattern::if_let::demo_it();
+  // match_pattern::if_let::demo_it();
+  match_pattern::about_option::demo_it();
 }
 
