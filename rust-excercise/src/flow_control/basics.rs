@@ -1,3 +1,4 @@
+#![allow(unused)]
 pub fn demo_it() {
     basic_demo();
     if_else_demo();
