@@ -1,7 +1,6 @@
 mod ownership_and_borrowing;
 mod reference_and_borrow;
 mod complex_types;
-// use complex_types::demo_it();
 mod flow_control;
 mod match_pattern;
 fn main() {
@@ -17,6 +16,7 @@ fn main() {
   // flow_control::basics::demo_it();
   // match_pattern::match_basics::demo_it();
   // match_pattern::if_let::demo_it();
-  match_pattern::about_option::demo_it();
+  // match_pattern::about_option::demo_it();
+  match_pattern::match_summary::demo_it();
 }
 
