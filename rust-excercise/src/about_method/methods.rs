@@ -4,6 +4,7 @@ pub fn demo_it() {
     circle_demo();
     rectangle_demo();
     impl_enum();
+    owner_demo();
 }
 
 struct Circle {
@@ -111,12 +112,12 @@ enum Message {
 impl Message {
     fn as_string(&self) -> String {
         match self {
-            Self::Quit => "Quit".to_string(),
-            Self::Move{x: a, y: b} => {
+            Message::Quit => "Quit".to_string(),
+            Message::Move{x: a, y: b} => {
                 format!("Move {}, {}", a, b)
             },
-            Self::Write(s) => s.clone(),
-            Self::ChangeColor(r, g, b) => {
+            Message::Write(s) => s.clone(),
+            Message::ChangeColor(r, g, b) => {
                 format!("Change rgb = {},{},{}", r, g, b)
             }
         }
@@ -126,4 +127,26 @@ impl Message {
 fn impl_enum() {
     let m = Message::ChangeColor(16, 32, 64);
     println!("message={}", m.as_string());
+}
+
+// `Pair` 持有两个分配在堆上的整数
+struct Pair(Box<i32>, Box<i32>);
+
+impl Pair {
+    // 该方法会拿走调用者的所有权
+    // `self` 是 `self: Self` 的语法糖
+    fn destroy(self) {
+        let Pair(first, second) = self;
+
+        println!("Destroying Pair({}, {})", first, second);
+
+        // `first` 和 `second` 在这里超出作用域并被释放
+    }
+}
+
+fn owner_demo() {
+    let pair = Pair(Box::new(1), Box::new(2));
+    pair.destroy();
+    // Error! 上一个 `destroy` 调用拿走了 `pair` 的所有权
+    // pair.destroy();
 }
