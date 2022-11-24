@@ -4,6 +4,7 @@ mod complex_types;
 mod flow_control;
 mod match_pattern;
 mod about_method;
+mod generics_and_traits;
 fn main() {
   // ownership_and_borrowing::demo_it();
   // reference_and_borrow::demo_it();
@@ -19,6 +20,7 @@ fn main() {
   // match_pattern::if_let::demo_it();
   // match_pattern::about_option::demo_it();
   // match_pattern::match_summary::demo_it();
-  about_method::methods::demo_it();
+  // about_method::methods::demo_it();
+  generics_and_traits::about_generics::demo_it();
 }
 
