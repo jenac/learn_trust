@@ -4,6 +4,7 @@ use std::ops::Add;
 pub fn demo_it() {
     need_import_trait();
     demo_customized_add_op();
+    demo_sheep();
 }
 
 fn need_import_trait() {
@@ -56,4 +57,62 @@ fn demo_customized_add_op() {
     let p3 = Point { x: 1i32, y: 1i32 };
     let p4 = Point { x: 2i32, y: 2i32 };
     println!("{:?}", add(p3, p4));
+}
+
+// exercise
+trait Animal {
+    fn new(name: String) -> Self;
+
+    fn name(&self) -> String;
+
+    fn noise(&self) -> String;
+
+    fn talk(&self) {
+        println!("{} says {}", self.name(), self.noise())
+    }
+}
+
+struct Sheep {
+    naked: bool,
+    name: String,
+}
+
+impl Animal for Sheep {
+    fn new(name: String) -> Self {
+        Sheep { name: name, naked: false}
+    }
+
+    fn name(&self) -> String {
+        self.name.clone()
+    }
+
+    fn noise(&self) -> String {
+        if self.is_naked() {
+            "??????".to_string()
+        } else {
+            "!!!!!!".to_string()
+        }
+    }
+}
+
+impl Sheep {
+    fn is_naked(&self) -> bool {
+        self.naked
+    }
+
+    fn shear(&mut self) {
+        if self.is_naked() {
+            println!("{} is already naked...", self.name());
+        } else {
+            println!("{} gets a haircut", self.name());
+        }
+        self.naked = true;
+    }
+}
+
+fn demo_sheep() {
+    let mut dolly: Sheep = Animal::new("Dolly".to_string());
+    dolly.talk();
+    dolly.shear();
+    dolly.talk();
 }

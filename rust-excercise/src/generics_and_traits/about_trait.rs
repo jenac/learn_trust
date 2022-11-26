@@ -2,6 +2,7 @@
 
 pub fn demo_it() {
     demo_trait();
+    demo_return_trait_dyn_impl();
 }
 
 pub trait Summary {
@@ -160,6 +161,39 @@ fn returns_summarizable() -> impl Summary {
     }
 }
 
+//return trait dyn type
+struct Sheep {}
+struct Cow {}
+
+trait Animal {
+    fn noise(&self) -> String;
+}
+
+impl Animal for Sheep {
+    fn noise(&self) -> String {
+        "Sheeeeeep!".to_string()
+    }
+}
+
+impl Animal for Cow {
+    fn noise(&self) -> String {
+        "Cooooooow!".to_string()
+    }
+}
+
+fn randon_animal(randon_number: f64) -> Box<dyn Animal> {
+    if randon_number < 0.5 {
+        Box::new(Sheep {})
+    } else {
+        Box::new(Cow {})
+    }
+}
+
+fn demo_return_trait_dyn_impl() {
+    let random_number = 0.789;
+    let animal = randon_animal(random_number);
+    println!("random animal: {}", animal.noise());
+}
 fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
     let mut res = list[0];
 
@@ -181,5 +215,3 @@ fn fixed_largest_demo() {
     let result = largest(&chars);
     println!("largest char={}", result);
 }
-
-
