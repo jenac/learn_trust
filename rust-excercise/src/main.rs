@@ -21,6 +21,8 @@ fn main() {
   // match_pattern::about_option::demo_it();
   // match_pattern::match_summary::demo_it();
   // about_method::methods::demo_it();
-  generics_and_traits::about_generics::demo_it();
+  // generics_and_traits::about_generics::demo_it();
+  // generics_and_traits::about_trait::demo_it();
+  generics_and_traits::trait_examples::demo_it();
 }
 
