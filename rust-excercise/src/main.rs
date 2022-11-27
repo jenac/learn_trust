@@ -5,6 +5,7 @@ mod flow_control;
 mod match_pattern;
 mod about_method;
 mod generics_and_traits;
+
 fn main() {
   // ownership_and_borrowing::demo_it();
   // reference_and_borrow::demo_it();
@@ -24,5 +25,6 @@ fn main() {
   // generics_and_traits::about_generics::demo_it();
   // generics_and_traits::about_trait::demo_it();
   // generics_and_traits::trait_examples::demo_it();
+  generics_and_traits::trait_object::demo_it();
 }
 

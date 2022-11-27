@@ -1,6 +1,6 @@
-#[allow(unused)]
 // use std::convert::TryInto;
 use std::ops::Add;
+#[allow(unused)]
 pub fn demo_it() {
     need_import_trait();
     demo_customized_add_op();
