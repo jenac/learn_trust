@@ -25,6 +25,7 @@ fn main() {
   // generics_and_traits::about_generics::demo_it();
   // generics_and_traits::about_trait::demo_it();
   // generics_and_traits::trait_examples::demo_it();
-  generics_and_traits::trait_object::demo_it();
+  // generics_and_traits::trait_object::demo_it();
+  generics_and_traits::more_traits::demo_it();
 }
 
