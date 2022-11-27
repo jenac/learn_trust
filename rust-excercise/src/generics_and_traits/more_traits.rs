@@ -1,3 +1,4 @@
+#[allow(unused)]
 pub fn demo_it() {
     demo_add_same_type();
     demo_add_diff_types();
