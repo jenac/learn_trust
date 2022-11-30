@@ -1,7 +1,7 @@
-
+#[allow(unused)]
 
 pub fn demo_it() {
-    demo_hashmap_simple();    
+    demo_hashmap_simple();
     demo_get_from_hashmap();
     demo_update_value_of_hashmap();
     demo_word_count();
@@ -18,7 +18,7 @@ fn demo_hashmap_simple() {
     ];
 
     let mut teams_map = HashMap::new();
-    for team in &team_list{
+    for team in &team_list {
         teams_map.insert(&team.0, team.1);
     }
     println!("{:?}", teams_map);
@@ -52,7 +52,7 @@ fn demo_update_value_of_hashmap() {
 
     let mut scores = HashMap::new();
     scores.insert("Blue", 20);
-    
+
     //overwrite existing value
     let old = scores.insert("Blue", 80);
     println!("insert again returns old value: {:?}", old);
@@ -79,7 +79,7 @@ fn demo_word_count() {
 
     for word in text.split_whitespace() {
         let count = map.entry(word).or_insert(0);
-        *count +=1;
+        *count += 1;
     }
     println!("{:?}", map);
 }

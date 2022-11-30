@@ -6,6 +6,7 @@ mod match_pattern;
 mod about_method;
 mod generics_and_traits;
 mod collections;
+mod type_convert;
 
 fn main() {
   // ownership_and_borrowing::demo_it();
@@ -29,6 +30,7 @@ fn main() {
   // generics_and_traits::trait_object::demo_it();
   // generics_and_traits::more_traits::demo_it();
   // collections::about_vector::demo_it();
-  collections::about_hashmap::demo_it();
+  // collections::about_hashmap::demo_it();
+  type_convert::about_type_convert::demo_it();
 }
 
