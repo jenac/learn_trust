@@ -5,9 +5,9 @@ use clap::{
 };
 
 #[derive(Parser, Debug)]
-#[command(author, version, about)]
+#[clap(author, version, about)]
 pub struct RustflixArgs {
-    #[command(subcommand)]
+    #[clap(subcommand)]
     pub entity_type: EntityType,
 }
 
@@ -25,7 +25,7 @@ pub enum EntityType {
 
 #[derive(Debug, Args)]
 pub struct UserCommand {
-    #[command(subcommand)]
+    #[clap(subcommand)]
     pub command: UserSubcommand,
 }
 
@@ -73,7 +73,7 @@ pub struct DeleteEntity {
 
 #[derive(Debug, Args)]
 pub struct VideoCommand {
-    #[command(subcommand)]
+    #[clap(subcommand)]
     pub command: VideoSubcommand,
 }
 
@@ -115,7 +115,7 @@ pub struct UpdateVideo {
 
 #[derive(Debug, Args)]
 pub struct ViewCommand {
-    #[command(subcommand)]
+    #[clap(subcommand)]
     pub command: ViewSubcommand,
 }
 
