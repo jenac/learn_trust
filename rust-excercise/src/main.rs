@@ -32,6 +32,7 @@ fn main() {
   // collections::about_vector::demo_it();
   // collections::about_hashmap::demo_it();
   // type_convert::about_type_convert::demo_it();
-  return_result::about_result::demo_it();
+  crate::return_result::about_result::demo_it();
+  
 }
 

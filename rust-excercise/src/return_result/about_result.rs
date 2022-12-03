@@ -9,6 +9,7 @@ pub fn demo_it() {
     demo_with_multiply();
     demo_and_then();
     demo_with_multiply2();
+    demo_10_patterns();
 }
 
 fn demo_basic_result() {
@@ -116,3 +117,60 @@ fn demo_with_multiply2() {
 
     println!("Success!")
 }
+
+fn demo_10_patterns() {
+    let v = vec!["3".to_string(), "4".to_string()];
+    let total = sum_str_vec(v);
+    println!("{:?}", total);
+
+    let v = vec!["3".to_string(), "abc".to_string()];
+    let total = sum_str_vec(v);
+    println!("{:?}", total);
+
+    let v = vec!["3".to_string(), "4".to_string()];
+    let total = sum_str_vec_option(v);
+    println!("{:?}", total);
+
+    let v = vec!["3".to_string(), "abc".to_string()];
+    let total = sum_str_vec_option(v);
+    println!("{:?}", total);
+}
+
+fn to_int(s: &str) -> i32 {
+    // s.parse().unwrap()
+    // s.parse().expect("cannot parse str")
+    s.parse().unwrap_or(0)
+}
+
+fn to_int_option(s: &str) -> Option<i32> {
+    s.parse().ok()
+}
+
+fn sum_str_vec(strs: Vec<String>) -> String {
+    let mut accum = 0i32;
+    for s in strs {
+        accum += to_int(&s);
+    }
+    accum.to_string()
+}
+
+fn sum_str_vec_option(strs: Vec<String>) -> String {
+    let mut accum = 0i32;
+    for s in strs {
+        /* accum += match to_int_option(&s) {
+             Some(v) => v,
+             None => 0,
+         };
+        */
+        /*
+        if let Some(v) = to_int_option(&s) {
+            accum += v;
+        }
+        */
+        accum += to_int_option(&s).unwrap_or(0)     
+    }
+    accum.to_string()
+}
+
+//ok_or(ERR): Option to error when none
+//map_err(Another ERR type): map 1 type of error to another
