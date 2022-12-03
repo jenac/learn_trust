@@ -1,3 +1,4 @@
+#[allow(unused)]
 pub fn demo_it() {
     demo_basic();
     demo_basic_2();
@@ -42,7 +43,7 @@ fn demo_try_into() {
     // let b_: u8 = b.try_into().unwrap(); //unwrap will panic
     let _b_: u8 = match b.try_into() {
         Ok(b1) => b1,
-        Err(e) => { 
+        Err(e) => {
             println!("{:?}", e.to_string());
             0
         }

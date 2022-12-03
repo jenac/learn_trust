@@ -7,7 +7,7 @@ mod about_method;
 mod generics_and_traits;
 mod collections;
 mod type_convert;
-
+mod return_result;
 fn main() {
   // ownership_and_borrowing::demo_it();
   // reference_and_borrow::demo_it();
@@ -31,6 +31,7 @@ fn main() {
   // generics_and_traits::more_traits::demo_it();
   // collections::about_vector::demo_it();
   // collections::about_hashmap::demo_it();
-  type_convert::about_type_convert::demo_it();
+  // type_convert::about_type_convert::demo_it();
+  return_result::about_result::demo_it();
 }
 
