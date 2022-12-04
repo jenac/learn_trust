@@ -2,7 +2,7 @@ use std::fs::File;
 use std::io;
 use std::io::ErrorKind;
 use std::io::Read;
-
+#[allow(unused)]
 pub fn demo_it() {
     demo_basic_result();
     demo_question_mark_macro();
@@ -167,7 +167,7 @@ fn sum_str_vec_option(strs: Vec<String>) -> String {
             accum += v;
         }
         */
-        accum += to_int_option(&s).unwrap_or(0)     
+        accum += to_int_option(&s).unwrap_or(0)
     }
     accum.to_string()
 }
