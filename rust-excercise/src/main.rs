@@ -9,6 +9,7 @@ mod collections;
 mod type_convert;
 mod return_result;
 mod formats;
+mod lifetime;
 fn main() {
   // ownership_and_borrowing::demo_it();
   // reference_and_borrow::demo_it();
@@ -34,7 +35,8 @@ fn main() {
   // collections::about_hashmap::demo_it();
   // type_convert::about_type_convert::demo_it();
   // crate::return_result::about_result::demo_it();
-  formats::about_formats::demo_it();
+  // formats::about_formats::demo_it();
+  lifetime::lifetime_intro::demo_it();
   
 }
 
