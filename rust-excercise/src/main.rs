@@ -37,7 +37,8 @@ fn main() {
   // crate::return_result::about_result::demo_it();
   // formats::about_formats::demo_it();
   // lifetime::lifetime_intro::demo_it();
-  lifetime::reborrow::demo_it();
+  // lifetime::reborrow::demo_it();
+  lifetime::about_static::demo_it();
   
 }
 
