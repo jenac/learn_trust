@@ -10,6 +10,7 @@ mod type_convert;
 mod return_result;
 mod formats;
 mod lifetime;
+mod functional_programming;
 fn main() {
   // ownership_and_borrowing::demo_it();
   // reference_and_borrow::demo_it();
@@ -38,7 +39,9 @@ fn main() {
   // formats::about_formats::demo_it();
   // lifetime::lifetime_intro::demo_it();
   // lifetime::reborrow::demo_it();
-  lifetime::about_static::demo_it();
+  // lifetime::about_static::demo_it();
+  functional_programming::about_closure::demo_it();
+
   
 }
 

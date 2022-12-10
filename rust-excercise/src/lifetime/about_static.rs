@@ -1,5 +1,6 @@
 use std::fmt::{Debug, Display};
 
+#[allow(unused)]
 pub fn demo_it() {
     basic_demo();
     demo_get_static_string();
@@ -77,7 +78,7 @@ fn demo_more_complex() {
     println!("&'static i32: {}", r1); // -> 42
     println!("&'static str: {}", r2); // -> &'static str
 
-    let r3: &str;
+    let _r3: &str;
 
     {
         let s1 = "String".to_string();
