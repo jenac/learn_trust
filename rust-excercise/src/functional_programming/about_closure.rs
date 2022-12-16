@@ -1,5 +1,6 @@
 use std::vec;
 
+#[allow(unused)]
 pub fn demo_it() {
     demo_basic();
     demo_struct_with_closure();
