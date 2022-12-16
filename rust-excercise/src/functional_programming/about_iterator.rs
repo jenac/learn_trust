@@ -1,3 +1,4 @@
+#[allow(unused)]
 pub fn demo_it() {
     demo_basics();
     demo_iter_lazy();
@@ -222,7 +223,7 @@ fn demo_others() {
         // 每两个元素剔除一个
         // [1, 3, 5]
         .filter(|&(idx, _)| idx % 2 == 0)
-        .map(|(idx, val)| val)
+        .map(|(_idx, val)| val)
         // 累加 1+3+5 = 9
         .fold(0u64, |sum, acm| sum + acm);
 
