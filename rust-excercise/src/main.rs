@@ -43,7 +43,8 @@ fn main() {
   // lifetime::about_static::demo_it();
   // functional_programming::about_closure::demo_it();
   // functional_programming::about_iterator::demo_it();
-  deepdive_types::about_types::demo_it();
+  // deepdive_types::about_types::demo_it();
+  deepdive_types::sized_and_dst::demo_it();
 
   
 }

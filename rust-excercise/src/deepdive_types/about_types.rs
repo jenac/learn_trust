@@ -1,3 +1,4 @@
+#[allow(unused)]
 pub fn demo_it() {
     demo_avoid_override_builtin();
     demo_better_readable_code();
