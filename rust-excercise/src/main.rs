@@ -12,6 +12,7 @@ mod formats;
 mod lifetime;
 mod functional_programming;
 mod deepdive_types;
+mod smart_pointers;
 fn main() {
   // ownership_and_borrowing::demo_it();
   // reference_and_borrow::demo_it();
@@ -45,7 +46,8 @@ fn main() {
   // functional_programming::about_iterator::demo_it();
   // deepdive_types::about_types::demo_it();
   // deepdive_types::sized_and_dst::demo_it();
-  deepdive_types::enum_and_int::demo_it();
+  // deepdive_types::enum_and_int::demo_it();
+  smart_pointers::about_box::demo_it();
 
   
 }
