@@ -49,5 +49,6 @@ fn main() {
     // deepdive_types::enum_and_int::demo_it();
     // smart_pointers::about_box::demo_it();
     // smart_pointers::about_deref::demo_it();
-    smart_pointers::about_drop::demo_it();
+    // smart_pointers::about_drop::demo_it();
+    smart_pointers::rc_and_arc::demo_it();
 }
