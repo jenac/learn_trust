@@ -47,7 +47,8 @@ fn main() {
   // deepdive_types::about_types::demo_it();
   // deepdive_types::sized_and_dst::demo_it();
   // deepdive_types::enum_and_int::demo_it();
-  smart_pointers::about_box::demo_it();
+  // smart_pointers::about_box::demo_it();
+  smart_pointers::about_deref::demo_it();
 
   
 }
