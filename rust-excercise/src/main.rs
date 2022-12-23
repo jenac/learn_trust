@@ -50,5 +50,6 @@ fn main() {
     // smart_pointers::about_box::demo_it();
     // smart_pointers::about_deref::demo_it();
     // smart_pointers::about_drop::demo_it();
-    smart_pointers::rc_and_arc::demo_it();
+    // smart_pointers::rc_and_arc::demo_it();
+    smart_pointers::cell_and_refcell::demo_it();
 }
