@@ -14,6 +14,7 @@ mod return_result;
 mod smart_pointers;
 mod type_convert;
 mod circular_or_self_ref;
+mod multi_thread_and_parallel;
 fn main() {
     // ownership_and_borrowing::demo_it();
     // reference_and_borrow::demo_it();
@@ -53,5 +54,6 @@ fn main() {
     // smart_pointers::about_drop::demo_it();
     // smart_pointers::rc_and_arc::demo_it();
     // smart_pointers::cell_and_refcell::demo_it();
-    circular_or_self_ref::weak_ref::demo_it();
+    // circular_or_self_ref::weak_ref::demo_it();
+    multi_thread_and_parallel::use_thread::demo_it();
 }
