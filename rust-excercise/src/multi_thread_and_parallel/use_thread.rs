@@ -1,3 +1,4 @@
+#[allow(unused)]
 pub fn demo_it() {
     demo_thread();
     println!("----------");

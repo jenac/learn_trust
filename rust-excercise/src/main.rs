@@ -55,5 +55,6 @@ fn main() {
     // smart_pointers::rc_and_arc::demo_it();
     // smart_pointers::cell_and_refcell::demo_it();
     // circular_or_self_ref::weak_ref::demo_it();
-    multi_thread_and_parallel::use_thread::demo_it();
+    // multi_thread_and_parallel::use_thread::demo_it();
+    multi_thread_and_parallel::sync_with_msg::demo_it();
 }
