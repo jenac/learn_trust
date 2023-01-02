@@ -1,4 +1,4 @@
-use std::{sync::{Mutex, Arc}, thread};
+use std::{sync::{Mutex, Arc, MutexGuard, RwLock, Condvar}, thread::{self, sleep}, time::Duration};
 
 #[allow(unused)]
 pub fn demo_it() {
@@ -7,6 +7,14 @@ pub fn demo_it() {
     demo_dead_lock();
     println!("----------");
     demo_mutex_in_threads();
+    println!("----------");
+    // demo_deadlock_in_multiple_threads();
+    println!("----------");
+    demo_try_lock();
+    println!("----------");
+    demo_rw_lock();
+    println!("----------");
+    demo_condvar();
 }
 
 
@@ -73,3 +81,161 @@ fn demo_mutex_in_threads() {
 }
 
 //简单总结下：Rc<T>/RefCell<T>用于单线程内部可变性， Arc<T>/Mutex<T>用于多线程内部可变性。
+
+
+use lazy_static::lazy_static;
+lazy_static!{
+    static ref MUTEX1: Mutex<i64> = Mutex::new(0);
+    static ref MUTEX2: Mutex<i64> = Mutex::new(0);
+}
+
+#[allow(dead_code)]
+fn demo_deadlock_in_multiple_threads() {
+    // 存放子线程的句柄
+    let mut children = vec![];
+    for i_thread in 0..2 {
+        children.push(thread::spawn(move || {
+            for _ in 0..1 {
+                // 线程1
+                if i_thread % 2 == 0 {
+                    // 锁住MUTEX1
+                    let _guard: MutexGuard<i64> = MUTEX1.lock().unwrap();
+
+                    println!("线程 {} 锁住了MUTEX1，接着准备去锁MUTEX2 !", i_thread);
+
+                    // 当前线程睡眠一小会儿，等待线程2锁住MUTEX2
+                    sleep(Duration::from_millis(10));
+
+                    // 去锁MUTEX2
+                    let _guard = MUTEX2.lock().unwrap();
+                // 线程2
+                } else {
+                    // 锁住MUTEX2
+                    let _guard = MUTEX2.lock().unwrap();
+
+                    println!("线程 {} 锁住了MUTEX2, 准备去锁MUTEX1", i_thread);
+
+                    let _guard = MUTEX1.lock().unwrap();
+                }
+            }
+        }));
+    }
+
+    // 等子线程完成
+    for child in children {
+        let _ = child.join();
+    }
+
+    println!("死锁没有发生");
+}
+
+
+fn demo_try_lock() {
+    // 存放子线程的句柄
+    let mut children = vec![];
+    for i_thread in 0..2 {
+        children.push(thread::spawn(move || {
+            for _ in 0..1 {
+                // 线程1
+                if i_thread % 2 == 0 {
+                    // 锁住MUTEX1
+                    let _guard: MutexGuard<i64> = MUTEX1.lock().unwrap();
+
+                    println!("线程 {} 锁住了MUTEX1，接着准备去锁MUTEX2 !", i_thread);
+
+                    // 当前线程睡眠一小会儿，等待线程2锁住MUTEX2
+                    sleep(Duration::from_millis(10));
+
+                    // 去锁MUTEX2
+                    let guard = MUTEX2.try_lock();
+                    println!("线程1获取MUTEX2锁的结果: {:?}",guard);
+                // 线程2
+                } else {
+                    // 锁住MUTEX2
+                    let _guard = MUTEX2.lock().unwrap();
+
+                    println!("线程 {} 锁住了MUTEX2, 准备去锁MUTEX1", i_thread);
+                    sleep(Duration::from_millis(10));
+                    let guard = MUTEX1.try_lock();
+                    println!("线程2获取MUTEX1锁的结果: {:?}",guard);
+                }
+            }
+        }));
+    }
+
+    // 等子线程完成
+    for child in children {
+        let _ = child.join();
+    }
+
+    println!("死锁没有发生");
+}
+
+
+
+fn demo_rw_lock() {
+    let lock = RwLock::new(5);
+
+    // 同一时间允许多个读
+    {
+        let r1 = lock.read().unwrap();
+        let r2 = lock.read().unwrap();
+        assert_eq!(*r1, 5);
+        assert_eq!(*r2, 5);
+    } // 读锁在此处被drop
+
+    // 同一时间只允许一个写
+    {
+        let mut w = lock.write().unwrap();
+        *w += 1;
+        assert_eq!(*w, 6);
+
+        // 以下代码会panic，因为读和写不允许同时存在
+        // 写锁w直到该语句块结束才被释放，因此下面的读锁依然处于`w`的作用域中
+        // let r1 = lock.read();
+        // println!("{:?}",r1);
+    }// 写锁在此处被drop
+}
+
+
+fn demo_condvar() {
+    let flag = Arc::new(Mutex::new(false));
+    let cond = Arc::new(Condvar::new());
+    let cflag = flag.clone();
+    let ccond = cond.clone();
+
+    let hdl = thread::spawn(move || {
+        let mut m = {*cflag.lock().unwrap()};
+        let mut counter = 0;
+
+        while counter < 3 {
+            while !m {
+                m = *ccond.wait(cflag.lock().unwrap()).unwrap();
+            }
+            {
+                m = false;
+                *cflag.lock().unwrap() = true;
+            }
+            counter += 1;
+            println!("inner counter: {}", counter);
+        }
+    });
+
+    let mut counter = 0;
+    loop {
+        sleep(Duration::from_millis(1000));
+        *flag.lock().unwrap() = true;
+        counter+=1;
+        if counter > 3 {
+            println!("breaking - outside counter: {}", counter);
+            break;
+        }
+        println!("outside counter: {}", counter);
+        cond.notify_one();
+    }
+
+    hdl.join().unwrap();
+    println!("{:?}", flag);
+}
+
+
