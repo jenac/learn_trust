@@ -57,5 +57,6 @@ fn main() {
     // circular_or_self_ref::weak_ref::demo_it();
     // multi_thread_and_parallel::use_thread::demo_it();
     // multi_thread_and_parallel::sync_with_msg::demo_it();
-    multi_thread_and_parallel::sync_with_lock_condvar::demo_it();
+    // multi_thread_and_parallel::sync_with_lock_condvar::demo_it();
+    multi_thread_and_parallel::atomic_and_mem_order::demo_it();
 }
